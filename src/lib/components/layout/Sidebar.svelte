@@ -108,6 +108,8 @@
 
 	const isMenuItemVisible = (id) => {
 		switch (id) {
+			case 'gallery':
+				return true;
 			case 'notes':
 				return (
 					($config?.features?.enable_notes ?? false) &&
@@ -142,6 +144,7 @@
 		const items = {
 			notes: { label: 'Notes', href: '/notes', iconType: 'note' },
 			workspace: { label: 'Workspace', href: '/workspace', iconType: 'workspace' },
+			gallery: { label: 'Gallery', href: '/gallery', iconType: 'workspace' },
 			automations: { label: 'Automations', href: '/automations', iconType: 'automations' },
 			calendar: { label: 'Calendar', href: '/calendar', iconType: 'calendar' },
 			playground: { label: 'Playground', href: '/playground', iconType: 'playground' }
