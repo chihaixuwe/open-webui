@@ -3,8 +3,11 @@ import { browser, dev } from '$app/environment';
 
 export const APP_NAME = 'DeePay AI';
 
-export const WEBUI_HOSTNAME = browser ? (dev ? `${location.hostname}:8000` : ``) : '';
-export const WEBUI_BASE_URL = browser ? (dev ? `http://${WEBUI_HOSTNAME}` : ``) : ``;
+const fallbackWebuiBaseUrl = browser && dev ? location.origin : '';
+const devWebuiBaseUrl = browser && dev ? import.meta.env.VITE_WEBUI_BASE_URL ?? fallbackWebuiBaseUrl : '';
+
+export const WEBUI_HOSTNAME = browser ? (dev ? new URL(devWebuiBaseUrl).host : '') : '';
+export const WEBUI_BASE_URL = browser ? (dev ? devWebuiBaseUrl : '') : '';
 export const WEBUI_API_BASE_URL = `${WEBUI_BASE_URL}/api`;
 
 export const OLLAMA_API_BASE_URL = `${WEBUI_BASE_URL}/ollama`;

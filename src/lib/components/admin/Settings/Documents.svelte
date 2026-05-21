@@ -691,7 +691,7 @@
 										on:change={() => {
 											// Auto-update URL when switching modes if it's empty or matches the opposite mode's default
 											const cloudUrl = 'https://mineru.net/api/v4';
-											const localUrl = 'http://localhost:8000';
+											const localUrl = import.meta.env.VITE_MINERU_API_URL ?? 'http://localhost:8000';
 
 											if (RAGConfig.MINERU_API_MODE === 'cloud') {
 												if (!RAGConfig.MINERU_API_URL || RAGConfig.MINERU_API_URL === localUrl) {
@@ -716,7 +716,7 @@
 									class="flex-1 w-full text-sm bg-transparent outline-hidden"
 									placeholder={RAGConfig.MINERU_API_MODE === 'cloud'
 										? $i18n.t('https://mineru.net/api/v4')
-										: $i18n.t('http://localhost:8000')}
+										: $i18n.t(import.meta.env.VITE_MINERU_API_URL ?? 'http://localhost:8000')}
 									bind:value={RAGConfig.MINERU_API_URL}
 								/>
 							</div>
